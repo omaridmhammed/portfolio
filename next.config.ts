@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: 'export',
+  basePath: '/portfolio',
   images: {
     unoptimized: true, // Required for static export
     remotePatterns: [
@@ -11,8 +12,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // For GitHub Pages deployment (if using a project repo)
-  // basePath: '/portfolio',
 };
 
 export default nextConfig;
