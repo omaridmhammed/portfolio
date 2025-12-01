@@ -2,13 +2,20 @@
 
 import { motion } from "framer-motion";
 import { Section } from "@/components/ui/Section";
-import { Code, Palette, Terminal, Cpu } from "lucide-react";
+import { Code, Palette, Terminal, Cpu, Mail, Phone, MapPin, CheckCircle } from "lucide-react";
 
 const skills = [
     { name: "Frontend Dev", icon: <Code />, level: 90 },
     { name: "UI/UX Design", icon: <Palette />, level: 85 },
     { name: "Backend", icon: <Terminal />, level: 75 },
     { name: "Prototyping", icon: <Cpu />, level: 80 },
+];
+
+const personalInfo = [
+    { label: "Email", value: "oidmhammed@gmail.com", icon: <Mail className="w-5 h-5" />, href: "mailto:oidmhammed@gmail.com" },
+    { label: "Phone", value: "(613) 898-7384", icon: <Phone className="w-5 h-5" />, href: "tel:+16138987384" },
+    { label: "Location", value: "Ottawa, Canada", icon: <MapPin className="w-5 h-5" />, href: null },
+    { label: "Status", value: "Available for Freelance", icon: <CheckCircle className="w-5 h-5" />, href: null },
 ];
 
 const timeline = [
@@ -32,6 +39,22 @@ export function About() {
                         <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
                             I am a multidisciplinary creative based in the digital realm. With a background in both design and engineering, I bridge the gap between aesthetics and functionality. My mission is to build digital products that look futuristic and feel natural.
                         </p>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                            {personalInfo.map((item, index) => (
+                                <div key={index} className="flex items-center gap-3 p-3 bg-white/5 border border-white/10 rounded-lg hover:border-accent transition-colors">
+                                    <div className="text-accent">{item.icon}</div>
+                                    <div>
+                                        <p className="text-xs text-muted-foreground uppercase tracking-wider">{item.label}</p>
+                                        {item.href ? (
+                                            <a href={item.href} className="text-sm font-medium hover:text-accent transition-colors">{item.value}</a>
+                                        ) : (
+                                            <p className="text-sm font-medium">{item.value}</p>
+                                        )}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
 
                         <div className="grid grid-cols-2 gap-6">
                             {skills.map((skill, index) => (

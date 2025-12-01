@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Futuristic Portfolio",
-  description: "A premium portfolio for graphic design and web development.",
+  title: "OMAR IDMHAMMED | Digital Creator",
+  description: "Portfolio of Omar Idmhammed - Digital Creator, Frontend Developer, and UI/UX Designer.",
 };
 
 export default function RootLayout({
