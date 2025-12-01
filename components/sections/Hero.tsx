@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
-import Image from "next/image";
 
 export function Hero() {
     return (
@@ -30,12 +29,10 @@ export function Hero() {
 
                         {/* Main Image Container */}
                         <div className="relative z-10 w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-black shadow-[0_0_30px_rgba(0,240,255,0.3)] overflow-hidden">
-                            <Image
-                                src="/profile.jpg"
+                            <img
+                                src={`${process.env.NODE_ENV === 'production' ? '/portfolio' : ''}/profile.jpg`}
                                 alt="Omar Idmhammed"
-                                fill
-                                className="object-cover"
-                                priority
+                                className="w-full h-full object-cover"
                             />
                         </div>
                     </div>
