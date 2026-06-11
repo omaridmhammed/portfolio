@@ -14,7 +14,7 @@ export function Contact() {
     const [formStatus, setFormStatus] = useState<"idle" | "sending" | "success">("idle");
     const [terminalLogs, setTerminalLogs] = useState<string[]>([]);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!name || !email || !message) return;
 
@@ -24,22 +24,73 @@ export function Contact() {
         const logs = [
             "Initializing secure uplink to host...",
             "Encrypting packet payloads (AES-256)...",
-            `Sending payload from: ${email}...`,
-            "Awaiting response from remote gateway...",
-            "Uplink established. Connection code 200 OK.",
-            "Transfer complete. Status: SUCCESS"
+            `Preparing payload from: ${email}...`,
+            "Connecting to Web3Forms API gateway...",
         ];
 
+        // Output initial simulated logs
         logs.forEach((log, idx) => {
             setTimeout(() => {
                 setTerminalLogs(prev => [...prev, `[system]: ${log}`]);
-                if (idx === logs.length - 1) {
+            }, (idx + 1) * 350);
+        });
+
+        try {
+            // Post data to Web3Forms API
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json"
+                },
+                body: JSON.stringify({
+                    access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "0c1b48b0-8dbb-4396-8575-d14cf95922e9", // A public access key or user fallback key
+                    name: name,
+                    email: email,
+                    message: message,
+                    subject: `New Portfolio Message from ${name}`
+                })
+            });
+
+            const result = await response.json();
+
+            setTimeout(() => {
+                if (response.ok || result.success) {
+                    setTerminalLogs(prev => [
+                        ...prev, 
+                        "[system]: Awaiting response from remote gateway...",
+                        "[system]: Uplink established. Connection code 200 OK.",
+                        "[system]: Transfer complete. Status: SUCCESS"
+                    ]);
                     setTimeout(() => {
                         setFormStatus("success");
                     }, 500);
+                } else {
+                    setTerminalLogs(prev => [
+                        ...prev,
+                        `[system]: ERROR: ${result.message || "Uplink rejected by API gateway."}`,
+                        "[system]: Initializing local mailto client fallback..."
+                    ]);
+                    setTimeout(() => {
+                        window.location.href = `mailto:oidmhammed@gmail.com?subject=Portfolio Message from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}`;
+                        setFormStatus("idle");
+                    }, 2000);
                 }
-            }, (idx + 1) * 600);
-        });
+            }, 1800);
+
+        } catch (error: any) {
+            setTimeout(() => {
+                setTerminalLogs(prev => [
+                    ...prev,
+                    `[system]: ERROR: Connection timed out. ${error.message || ""}`,
+                    "[system]: Initializing local mailto client fallback..."
+                ]);
+                setTimeout(() => {
+                    window.location.href = `mailto:oidmhammed@gmail.com?subject=Portfolio Message from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}`;
+                    setFormStatus("idle");
+                }, 2000);
+            }, 1800);
+        }
     };
 
     const handleReset = () => {
