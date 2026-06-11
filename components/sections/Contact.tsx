@@ -44,7 +44,7 @@ export function Contact() {
                     Accept: "application/json"
                 },
                 body: JSON.stringify({
-                    access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "0c1b48b0-8dbb-4396-8575-d14cf95922e9", // A public access key or user fallback key
+                    access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "c8dde3ec-7a68-4f96-94a9-528131b9823b",
                     name: name,
                     email: email,
                     message: message,
