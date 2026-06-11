@@ -7,34 +7,34 @@ import Image from "next/image";
 
 const projects = [
     {
-        title: "Neon Cyberpunk UI",
-        category: "Web Design",
-        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
-        description: "A futuristic user interface design for a gaming platform.",
-        tags: ["Next.js", "Tailwind", "Framer Motion"],
+        title: "Personal Portfolio Website",
+        category: "Web Development",
+        image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=2055&auto=format&fit=crop",
+        description: "Responsive layout built with modern web technologies. Displays personal education, experience, skills, and certifications with stunning visual effects.",
+        tags: ["HTML", "CSS", "JavaScript", "Next.js", "TailwindCSS"],
         links: { demo: "#", github: "#" },
     },
     {
-        title: "AI Analytics Dashboard",
-        category: "Development",
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
-        description: "Real-time data visualization dashboard powered by AI.",
-        tags: ["React", "D3.js", "Python"],
+        title: "JavaScript Practice Projects",
+        category: "Software Development",
+        image: "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?q=80&w=2070&auto=format&fit=crop",
+        description: "Small interactive exercises and logic-based programs designed to master DOM manipulation, ES6 features, and problem-solving.",
+        tags: ["JavaScript", "Algorithms", "DOM", "Clean Code"],
         links: { demo: "#", github: "#" },
     },
     {
-        title: "E-Commerce Redesign",
-        category: "UX/UI",
-        image: "https://images.unsplash.com/photo-1607799275518-d58665d099db?q=80&w=2070&auto=format&fit=crop",
-        description: "Modernizing the shopping experience for a luxury brand.",
-        tags: ["Figma", "Shopify", "Liquid"],
+        title: "SQL Practice Projects",
+        category: "Database Management",
+        image: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?q=80&w=2021&auto=format&fit=crop",
+        description: "Interactive learning models utilizing basic to advanced database queries, relational structures, and relational schema designs.",
+        tags: ["SQL", "Relational Database", "Queries", "Data Structures"],
         links: { demo: "#", github: "#" },
     },
 ];
 
 export function Projects() {
     return (
-        <Section id="projects" className="bg-black/50">
+        <Section id="projects" className="bg-black/40 backdrop-blur-sm relative border-y border-white/5">
             <div className="container mx-auto px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -43,7 +43,7 @@ export function Projects() {
                     transition={{ duration: 0.6 }}
                     className="mb-16"
                 >
-                    <h2 className="text-3xl md:text-5xl font-bold mb-4">SELECTED WORK</h2>
+                    <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tighter">SELECTED WORK</h2>
                     <div className="w-20 h-1 bg-accent" />
                 </motion.div>
 
@@ -55,7 +55,8 @@ export function Projects() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: index * 0.1 }}
-                            className="group relative overflow-hidden bg-white/5 border border-white/10 hover:border-accent/50 transition-colors"
+                            className="group relative overflow-hidden bg-muted/30 border border-border hover:border-accent/30 hover:box-glow transition-all duration-500 rounded-lg"
+                            data-cursor-text="VIEW"
                         >
                             <div className="aspect-video relative overflow-hidden">
                                 <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 mix-blend-overlay" />
@@ -63,7 +64,7 @@ export function Projects() {
                                     src={project.image}
                                     alt={project.title}
                                     fill
-                                    className="object-cover transition-transform duration-500 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                                    className="object-cover transition-transform duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0"
                                 />
                             </div>
 
@@ -73,23 +74,23 @@ export function Projects() {
                                         <span className="text-accent text-xs font-mono tracking-widest uppercase mb-2 block">
                                             {project.category}
                                         </span>
-                                        <h3 className="text-xl font-bold group-hover:text-accent transition-colors">
+                                        <h3 className="text-xl font-bold group-hover:text-accent transition-colors duration-300">
                                             {project.title}
                                         </h3>
                                     </div>
-                                    <div className="flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-4 group-hover:translate-x-0">
-                                        <a href={project.links.github} className="hover:text-accent transition-colors"><Github size={18} /></a>
-                                        <a href={project.links.demo} className="hover:text-accent transition-colors"><ExternalLink size={18} /></a>
+                                    <div className="flex gap-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
+                                        <a href={project.links.github} className="hover:text-accent transition-colors" data-cursor-text="CODE"><Github size={18} /></a>
+                                        <a href={project.links.demo} className="hover:text-accent transition-colors" data-cursor-text="LIVE"><ExternalLink size={18} /></a>
                                     </div>
                                 </div>
 
-                                <p className="text-muted-foreground text-sm mb-6 line-clamp-2">
+                                <p className="text-muted-foreground text-sm mb-6 line-clamp-2 leading-relaxed">
                                     {project.description}
                                 </p>
 
                                 <div className="flex flex-wrap gap-2">
                                     {project.tags.map((tag) => (
-                                        <span key={tag} className="text-xs px-2 py-1 bg-white/5 border border-white/10 text-muted-foreground">
+                                        <span key={tag} className="text-[10px] px-2 py-1 bg-white/5 border border-white/5 text-muted-foreground font-mono">
                                             {tag}
                                         </span>
                                     ))}
@@ -102,3 +103,4 @@ export function Projects() {
         </Section>
     );
 }
+

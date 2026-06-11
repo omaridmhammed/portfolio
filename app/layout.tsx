@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { CustomCursor } from "@/components/ui/CustomCursor";
+import { ParticleBackground } from "@/components/ui/ParticleBackground";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "OMAR IDMHAMMED | Digital Creator",
-  description: "Portfolio of Omar Idmhammed - Digital Creator, Frontend Developer, and UI/UX Designer.",
+  title: "Omar Idmhammed | Portfolio",
+  description: "Personal portfolio of Omar Idmhammed. Highlighting Web Development, IT Support, SQL & Databases, and personal projects.",
 };
 
 export default function RootLayout({
@@ -27,10 +29,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground selection:bg-accent selection:text-black`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground selection:bg-accent selection:text-black min-h-screen flex flex-col`}
       >
+        <ParticleBackground />
+        <CustomCursor />
         <Navbar />
-        <main className="min-h-screen pt-20">
+        <main className="flex-grow pt-20 relative z-10">
           {children}
         </main>
         <Footer />
@@ -38,3 +42,4 @@ export default function RootLayout({
     </html>
   );
 }
+

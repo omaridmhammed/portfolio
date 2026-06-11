@@ -30,40 +30,44 @@ export function Hero() {
                         {/* Main Image Container */}
                         <div className="relative z-10 w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-black shadow-[0_0_30px_rgba(0,240,255,0.3)] overflow-hidden">
                             <img
-                                src={`${process.env.NODE_ENV === 'production' ? '/portfolio' : ''}/profile.jpg`}
+                                src="/portfolio/profile.jpg"
                                 alt="Omar Idmhammed"
                                 className="w-full h-full object-cover"
                             />
                         </div>
                     </div>
 
-                    <h2 className="text-accent font-mono text-sm tracking-[0.2em] mb-4 uppercase">
-                        Digital Creator
+                    <h2 className="text-accent font-mono text-xs md:text-sm tracking-[0.2em] mb-4 uppercase">
+                        Software & Web Developer
                     </h2>
-                    <h1 className="text-5xl md:text-8xl font-bold tracking-tighter mb-6 leading-tight">
+                    <h1 className="text-5xl md:text-8xl font-bold tracking-tighter mb-6 leading-tight select-none">
                         DESIGNING THE <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50 relative">
                             FUTURE
                             <motion.span
-                                className="absolute -inset-1 bg-accent/20 blur-lg"
+                                className="absolute -inset-1 bg-accent/25 blur-lg"
                                 initial={{ opacity: 0 }}
-                                animate={{ opacity: [0, 0.5, 0] }}
-                                transition={{ duration: 2, repeat: Infinity }}
+                                animate={{ opacity: [0, 0.4, 0] }}
+                                transition={{ duration: 2.5, repeat: Infinity }}
                             />
                         </span>
                     </h1>
-                    <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10">
-                        I craft immersive digital experiences with cutting-edge technology and premium aesthetics.
+                    <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+                        I build responsive user interfaces, manage complex database systems, and solve real-world technical problems.
                     </p>
 
-                    <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-                        <Button size="lg" className="group">
-                            View Projects
-                            <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </Button>
-                        <Button variant="outline" size="lg">
-                            Contact Me
-                        </Button>
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a href="#projects" data-cursor-text="WORK" className="w-full sm:w-auto">
+                            <Button size="lg" className="group w-full">
+                                View Projects
+                                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            </Button>
+                        </a>
+                        <a href="#contact" data-cursor-text="TALK" className="w-full sm:w-auto">
+                            <Button variant="outline" size="lg" className="w-full">
+                                Contact Me
+                            </Button>
+                        </a>
                     </div>
                 </motion.div>
             </div>

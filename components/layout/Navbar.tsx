@@ -9,6 +9,7 @@ import { twMerge } from "tailwind-merge";
 const navItems = [
     { name: "Projects", href: "#projects" },
     { name: "About", href: "#about" },
+    { name: "Media", href: "#media" },
     { name: "Contact", href: "#contact" },
 ];
 
@@ -32,7 +33,7 @@ export function Navbar() {
             )}
         >
             <div className="container mx-auto px-6 flex items-center justify-between">
-                <Link href="/" className="text-xl md:text-2xl font-bold tracking-tighter hover:text-accent transition-colors uppercase">
+                <Link href="/" className="text-xl md:text-2xl font-bold tracking-tighter hover:text-accent transition-colors uppercase" data-cursor-text="HOME">
                     OMAR IDMHAMMED<span className="text-accent">.</span>
                 </Link>
 
@@ -43,13 +44,18 @@ export function Navbar() {
                             key={item.name}
                             href={item.href}
                             className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors uppercase tracking-widest"
+                            data-cursor-text={item.name}
                         >
                             {item.name}
                         </Link>
                     ))}
-                    <button className="px-6 py-2 bg-white text-black font-bold text-sm uppercase tracking-widest hover:bg-accent hover:text-black transition-colors">
+                    <a 
+                        href="#contact" 
+                        className="px-6 py-2 bg-white text-black font-bold text-sm uppercase tracking-widest hover:bg-accent hover:box-glow hover:text-black transition-all duration-300"
+                        data-cursor-text="TALK"
+                    >
                         Let's Talk
-                    </button>
+                    </a>
                 </nav>
 
                 {/* Mobile Menu Button */}
